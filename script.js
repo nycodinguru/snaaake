@@ -1,12 +1,12 @@
 function init() {
-  updateCellData();
   board.render();
   updateBoard();
   snakeFood();
+  createBoard();
 }
 
 let snake = [{x:21,y:12}];
-var setInt = 150;
+var setInt = 130;
 
 function renderRow() {
   var rowEl = document.createElement('div');
@@ -60,6 +60,7 @@ function updateBoard(){
     }
     else {
     cell.setAttribute('class', 'cell');
+    
     }
 
     //Each 
@@ -119,33 +120,30 @@ function foodFound (){
     }
 
 
-function updateCellData() {
-  // for (var i = 0; i < 24; i++) {
-  //   let row = [];
+// function updateCellData() {
+//   for (var i = 0; i < 24; i++) {
+//     let row = [];
 
     
 
-  //   for (var j = 0; j < 42; j++) {
-  //     let hasSnake = false;
-  //     snake.forEach((body) => {
-  //       if (j === body.x && i === body.y){
-  //         hasSnake = true;
-  //       }
-  //     })
-  //     if(hasSnake) {
-  //       row.push(1)
-  //     } else {
-  //       row.push(0);
-  //     }
-  //   }
+//     for (var j = 0; j < 42; j++) {
+//       let hasSnake = false;
+//       snake.forEach((body) => {
+//         if (j === body.x && i === body.y){
+//           hasSnake = true;
+//         }
+//       })
+//       if(hasSnake) {
+//         row.push(1)
+//       } else {
+//         row.push(0);
+//       }
+//     }
 
-  //   board.cellData.push(row);
-  // }
-  // console.log(board.cellData);
-}
-
-
-document.addEventListener('keydown', keyListner) 
+//     board.cellData.push(row);
+//   }
+//   console.log(board.cellData);
+// }
 
 var leftA;
 var upA;
@@ -169,7 +167,7 @@ function move(e) {
   var errorSound = new Audio('audio/doorbuzz.wav');
 
 
-  if (e.keyCode === 37){
+  if (e.keyCode === 65 || e.keyCode === 37){
       if (currentFunction[0] !== 'right' && currentFunction[0] !== 'left'){
 
     clearInterval(upA);
@@ -179,7 +177,7 @@ function move(e) {
     currentFunction.unshift('left');
     currentFunction.pop();
     }}
-  if (e.keyCode === 38){
+  if (e.keyCode === 87 || e.keyCode === 38){
       if (currentFunction[0] !== 'down' && currentFunction[0] !== 'up'){  
     clearInterval(leftA);
     clearInterval(rightA);
@@ -188,7 +186,7 @@ function move(e) {
     currentFunction.unshift('up');
     currentFunction.pop();
   }}
-  if (e.keyCode === 39){
+  if (e.keyCode === 68 || e.keyCode === 39){
       if (currentFunction[0] !== 'left' && currentFunction[0] !== 'right'){  
     clearInterval(upA);
     clearInterval(downA);
@@ -197,7 +195,7 @@ function move(e) {
     currentFunction.unshift('right');
     currentFunction.pop();
   }}
-  if (e.keyCode === 40){
+  if (e.keyCode === 83 || e.keyCode === 40){
       if (currentFunction[0] !== 'up' && currentFunction[0] !== 'down'){
 
     clearInterval(leftA);
@@ -207,7 +205,10 @@ function move(e) {
     currentFunction.unshift('down');
     currentFunction.pop();
   }}
-  else if (e.keyCode !== 37 && e.keyCode !==  38 && e.keyCode !==  39 && e.keyCode !== 40) {errorSound.play()
+  if (e.keyCode === 80){
+      pauseGame();
+  }
+  else if (e.keyCode !== 37 && e.keyCode !==  38 && e.keyCode !==  39 && e.keyCode !== 40 && e.keyCode !== 80 && e.keyCode !== 68 && e.keyCode !== 83 && e.keyCode !== 87 && e.keyCode !== 65 ) {errorSound.play()
   }
 
   
@@ -339,7 +340,7 @@ var gameoverSound = new Audio('audio/gameover.m4a');
   function noSelfTouch(){
 
 
-  for (var i = 1; i < snake.length; i++) {
+  for (var i = 2; i < snake.length; i++) {
 
     var headX = snake[0].x
     var headY = snake[0].y
@@ -354,9 +355,9 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     }}}  
 
   function gameReset(){
-    var gunshot = new Audio('audio/continuegunshot.m4a')
+    var gunshot = new Audio('audio/continuegunshot.m4a');
     gunshot.play();
-    gameoverSound.pause()
+    gameoverSound.pause();
     mgsThemeMusic.src = "audio/ps4homemusic.mp3";
     document.addEventListener('keydown', keyListner);
     gameOverBkrgd.style = 'animation: fadedelay 2s 0s ease-out; animation-iteration-count: 1;'
@@ -373,11 +374,54 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     updateBoard();
     document.querySelector('.food').classList.toggle('food');
     snakeFood();
-    setInt = 100
-    currentFunction = ['']
+    setInt = 130;
+    currentFunction = [''];
+    document.querySelectorAll('.cell')[525].classList.toggle('blink');
   }
 }
 
+
+
+function pauseGame(){
+
+  // var currentFunc = currentFunction[0];
+  // console.log(currentFunction.length);
+
+  // if (currentFunction.length == 1){
+  //   clear();
+  //   currentFunction.push('new');
+  //   ;
+  // }
+
+  // if (currentFunction.length == 2){
+  //   clear();
+  //   if (currentFunc == 'left' ){
+  //         leftA = setInterval(left, setInt);
+  //         currentFunction.unshift('left');
+  //         currentFunction.pop();
+  //         currentFunction.pop();
+  //   }
+  //   if (currentFunc == 'up' ){
+  //         upA = setInterval(up, setInt);
+  //         currentFunction.unshift('up');
+  //         currentFunction.pop();
+  //         currentFunction.pop();
+  //   }
+  //   if (currentFunc == 'right'){
+  //         rightA = setInterval(right, setInt);
+  //         currentFunction.unshift('right');
+  //         currentFunction.pop();
+  //         currentFunction.pop();
+  //   }     
+  //   if (currentFunc == 'down' ){
+  //         downA = setInterval(down, setInt);
+  //         currentFunction.unshift('down');
+  //         currentFunction.pop();
+  //         currentFunction.pop();
+  //   }
+  // }
+  
+}
 
 
 var board = {
@@ -387,6 +431,25 @@ var board = {
   cellData: []
 
 };
+
+function createBoard() {
+  // for (var i = 0; i < 24; i++) {
+    
+  //   for (var j = 0; j < 42; j++) {
+      
+  //     let row = [];
+
+  //       row.push(0)
+        
+      
+  //     }
+
+  //     return row
+  //   }
+
+  //   board.cellData.push(row);
+  }
+  // console.log(board.cellData);
 
 init();
 
@@ -400,6 +463,7 @@ function chime(){
 }
 
 function landFade(){
+  document.addEventListener('keydown', keyListner); 
   var codecOpen = new Audio("audio/codecopen.wav");
   var mgsThemeMusic = document.querySelector('audio');
   var startDiv = document.querySelector('.startDiv');
@@ -411,4 +475,5 @@ function landFade(){
   mgsThemeMusic.src = "audio/ps4homemusic.mp3"; 
 }
 
-
+var startdiv = document.querySelectorAll('.cell')[525];
+startdiv.classList.toggle('blink');

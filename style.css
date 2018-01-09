@@ -1,14 +1,14 @@
 @keyframes start {
   0% {
-    color: rgba(175, 245, 224, 0);
+    color: rgba( 250, 17, 28, 0);;
   }
 
   50% {
-   color: rgba(175, 245, 224, 1);
+   color: rgba( 250, 17, 28, 1);
   }
 
   100% {
-    color: rgba(175, 245, 224, 0);
+    color: rgba( 250, 17, 28, 0);
   }
 }
 @keyframes snakeBlink {
@@ -189,6 +189,10 @@
   font-family: TacticalEspionageAction;
   src: url('fonts/Tactical Espionage Action.ttf');
 }
+@font-face {
+  font-family: MetalGear;
+  src: url('fonts/METAG.TTF');
+}
 .startDiv {
   position: fixed;
   background-color: rgba(10, 10, 10, 1);
@@ -211,16 +215,18 @@
 #startButton {
   top: 30%;
   font-family: mobileFont;
-  color: rgba(175, 245, 224, .5);
-  font-size: 40pt;
+  color: rgba(202,32,22,1);
+  font-size: 17pt;
+  word-spacing: 15px;
   animation: start 2s 0.5s infinite ease-in-out;
-  height: 60px;
-  padding-top: 10px;
+  height: 50px;
+  padding-top: 30px;
   cursor: pointer;
   transition: .35s;
   background-color: rgba(60, 60, 60, .3);
   width: 50%;
   left: 25%;
+  transform: scaleY(.75);
   }
 #startButton:hover{
   transition: .5s;
@@ -241,20 +247,62 @@
   margin-bottom: 33px;
 }
 h2 {
-  font-family: mobileFont;
+  font-family: MetalGear;
   color: rgba(175, 245, 224, 1);
-  font-size: 60pt;
+  letter-spacing: 2px;
+  font-size: 70pt;
   text-shadow: 3px 3px rgba(120, 176, 153, 1);
   line-height: 300px;
   animation: snake 4s 0s ease-in-out;
-  animation-iteration-count: 1;
+  animation-iteration-count: 1; 
+  margin-bottom: 0;
+  height: 195px;
 }
+#tact{
+  position: absolute;
+  top: 180px;
+  font-family: TacticalEspionageAction;
+  color: rgba(175, 245, 224, 1);
+  letter-spacing: 2px;
+  font-size: 17pt;
+  animation: thegame 4.5s 0s infinite ease-out;
+  animation-iteration-count: 1;
+
+}
+#solid{
+  position: relative;
+  top: 0;
+  font-family: TacticalEspionageAction;
+  color: rgba(8, 8, 8, 1);
+  background-color: rgba(175, 245, 224, 1);
+  letter-spacing: 2px;
+  font-size: 17pt;
+  animation: thegame 4.5s 0s infinite ease-out;
+  animation-iteration-count: 1;
+  height: 0px;
+  width: 531px;
+  border-bottom: solid 24px rgba(175, 245, 224, 1);
+  border-right: solid 13px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 1%;
+}
+/*#i{
+  position: fixed;
+  height: 4px;
+  width: 29px;
+  background: rgba(8, 8, 8, .4);
+  top: 254px;
+  left: 76.8%;
+  z-index: 1000;
+  transform: skewX(-11deg);
+}*/
 h3 {
   font-family: mobileFont;
-  color: rgba(255, 255, 255, .6);
+  color: rgba(255, 255, 255, .35);
   font-size: 10pt;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
-  line-height: 0px;
+  line-height: 520px;
   animation: thegame 4.5s 0s infinite ease-out;
   animation-iteration-count: 1;
 }
@@ -304,7 +352,9 @@ main {
   padding: 2px;
   box-shadow: 1.5px 1.5px rgba(120, 176, 153, 1);
   z-index: 2;
-  /*animation: snakeBlink 1s 0s infinite linear;*/
+}
+.blink{
+  animation: snakeBlink .8s 0s infinite linear;
 }
 .food {
   background: rgba(48, 69, 59, 0);
