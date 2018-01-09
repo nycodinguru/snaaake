@@ -6,6 +6,7 @@ function init() {
 }
 
 let snake = [{x:21,y:12}];
+var setInt = 150;
 
 function renderRow() {
   var rowEl = document.createElement('div');
@@ -48,12 +49,12 @@ function render() {
 function updateBoard(){
   var cells = document.querySelectorAll('.cell');
 
-  console.log(cells);
 
   cells.forEach(function(cell) {
     let hasSnake = false;
 
-    // set cell class to "cell"
+    // set cell class to "cell" if class does not contain the "food" class
+
     if (cell.classList.contains('food')){
       
     }
@@ -61,13 +62,13 @@ function updateBoard(){
     cell.setAttribute('class', 'cell');
     }
 
+    //Each 
 
     snake.forEach((body) => {
 
-      var colNum = cell.dataset.colnumber;
-      var rowNum = cell.dataset.rownumber;
-      var x = parseInt(colNum);
-      var y = parseInt(rowNum);
+      var x = parseInt(cell.dataset.colnumber);
+      var y = parseInt(cell.dataset.rownumber);
+
 
       if (x === body.x && y === body.y){
         hasSnake = true;
@@ -77,12 +78,46 @@ function updateBoard(){
 
     if(hasSnake) {
       // toggle class "snake"
+
       cell.classList.toggle('snake');
+
     }
   })
+  }
 
+function foodFound (){
+  var cells = document.querySelectorAll('.cell');
+
+    snake.forEach((body) => {
+      var apple = document.querySelector('.food');
+      let foodEaten = false
+
+      var foodx = apple.dataset.colnumber;
+      var foody = apple.dataset.rownumber;
+
+      if (foodx == snake[0].x && foody == snake[0].y){
+        foodEaten = true;
+      }
     
-}
+      if (foodEaten){
+      var itemUsed = new Audio('audio/itemused.wav');
+      var lastSnakeIndexNum = snake.length-1;
+      var tailx = snake[lastSnakeIndexNum].x
+      var taily = snake[lastSnakeIndexNum].y
+      var newBodyDiv = {x:snake[lastSnakeIndexNum].x+1,y:snake[lastSnakeIndexNum].y}
+
+      itemUsed.play();
+      setInt+= -2
+      apple.classList.toggle('food');
+      snakeFood();
+
+      snake.push(newBodyDiv);
+
+    }
+
+    })
+    }
+
 
 function updateCellData() {
   // for (var i = 0; i < 24; i++) {
@@ -112,143 +147,137 @@ function updateCellData() {
 
 document.addEventListener('keydown', keyListner) 
 
-var left
-var up
-var right
-var down
-
-// function clearSetInt(){
-//   clearInterval(left);
-//   clearInterval(up);
-//   clearInterval(right);
-//   clearInterval(down);
-// }
+var leftA;
+var upA;
+var rightA;
+var downA;
 
 function keyListner(e){
    return move(e);
 };
 
+function clear() {
+  clearInterval(upA);
+  clearInterval(downA);
+  clearInterval(leftA);
+  clearInterval(rightA);
+}
+
+var currentFunction = ['']
 
 function move(e) {
   var errorSound = new Audio('audio/doorbuzz.wav');
 
 
   if (e.keyCode === 37){
-    // clearInterval(up);
-    // clearInterval(right);
-    // clearInterval(down);
-    // left = setInterval(left, 200);
-    var newHead = {x:snake[0].x-1,y:snake[0].y}
+      if (currentFunction[0] !== 'right' && currentFunction[0] !== 'left'){
 
-    snake.unshift(newHead);
-    console.log(newHead)
-    snake.pop();
-    console.log(snake[0].x);
-    updateBoard();
-    }
+    clearInterval(upA);
+    clearInterval(downA);
+    
+    leftA = setInterval(left, setInt);
+    currentFunction.unshift('left');
+    currentFunction.pop();
+    }}
   if (e.keyCode === 38){
-    // clearInterval(left);
-    // clearInterval(right);
-    // clearInterval(down);
-    // up = setInterval(up, 200);
-    var newHead = {x:snake[0].x,y:snake[0].y-1}
-
-    snake.unshift(newHead);
-    console.log(newHead)
-    snake.pop();
-    console.log(snake[0].y);
-    updateBoard();
-  }
+      if (currentFunction[0] !== 'down' && currentFunction[0] !== 'up'){  
+    clearInterval(leftA);
+    clearInterval(rightA);
+    
+    upA = setInterval(up, setInt);
+    currentFunction.unshift('up');
+    currentFunction.pop();
+  }}
   if (e.keyCode === 39){
-    // clearInterval(left);
-    // clearInterval(up);
-    // clearInterval(down);
-    // right = setInterval(right, 200);
-    var newHead = {x:snake[0].x+1,y:snake[0].y}
-    snake.unshift(newHead);
-    console.log(newHead)
-    snake.pop();
-    console.log(snake[0].x);
-    updateBoard();
-  }
+      if (currentFunction[0] !== 'left' && currentFunction[0] !== 'right'){  
+    clearInterval(upA);
+    clearInterval(downA);
+    
+    rightA = setInterval(right, setInt);
+    currentFunction.unshift('right');
+    currentFunction.pop();
+  }}
   if (e.keyCode === 40){
-    // clearInterval(left);
-    // clearInterval(up);
-    // clearInterval(right);
-    // down = setInterval(down, 200); 
-    var newHead = {x:snake[0].x,y:snake[0].y+1}
+      if (currentFunction[0] !== 'up' && currentFunction[0] !== 'down'){
 
-    snake.unshift(newHead);
-    console.log(newHead)
-    console.log(snake[0].y);
-    snake.pop();
-    updateBoard(); 
-  }
+    clearInterval(leftA);
+    clearInterval(rightA);
+    
+    downA = setInterval(down, setInt); 
+    currentFunction.unshift('down');
+    currentFunction.pop();
+  }}
   else if (e.keyCode !== 37 && e.keyCode !==  38 && e.keyCode !==  39 && e.keyCode !== 40) {errorSound.play()
   }
 
-  cellDeath();
+  
 }
 
 function left(){
    var newHead = {x:snake[0].x-1,y:snake[0].y}
 
     snake.unshift(newHead);
-    console.log(newHead)
     snake.pop();
-    console.log(snake[0].x);
     updateBoard();
+    foodFound();
+    cellDeath();
   }
 
 function up(){
 var newHead = {x:snake[0].x,y:snake[0].y-1}
 
     snake.unshift(newHead);
-    console.log(newHead)
     snake.pop();
-    console.log(snake[0].y);
     updateBoard();
+    foodFound();
+    cellDeath();
 }
 
 function right(){
 var newHead = {x:snake[0].x+1,y:snake[0].y}
 
     snake.unshift(newHead);
-    console.log(newHead)
     snake.pop();
-    console.log(snake[0].x);
     updateBoard();
+    foodFound();
+    cellDeath();
 }
 
 function down(){
    var newHead = {x:snake[0].x,y:snake[0].y+1}
 
     snake.unshift(newHead);
-    console.log(newHead)
-    console.log(snake[0].y);
     snake.pop();
     updateBoard();
+    foodFound();
+    cellDeath();
 }
 
+var cells;
 
 function snakeFood(){
-   var cells = document.querySelectorAll('.cell');
+   cells = document.querySelectorAll('.cell');
    var ranNum = Math.floor(Math.random() * 1008);
    let noSnake = false;
    let noFood = false;
 
 
-   // console.log(cells[ranNum]);
+      if (!cells[ranNum].classList.contains('snake')) {
+        cells[ranNum].classList.toggle('food');
+      }
 
-   // cells.forEach((cell) => {
+      else if(cells[ranNum].classList.contains('snake')){
+        ranNum = Math.floor(Math.random() * 1008);
+        snakeFood();
+      }
+
+  //  cells.forEach((cell) => {
    
-    
-
   //     if (cell.hasClass('food')){
   //       noFood = false
   //     }
 
-  //     else if (nofood){
+  //     else if (noFood){
 
   //     if (cell[ranNum].classList.contains('snake')){
   //       noSnake = false;
@@ -263,11 +292,11 @@ function snakeFood(){
   //     // toggle class "food"
   //     cell[ranNum].classList.toggle('food');
   //   }
-  // }
-  
-  cells[ranNum].classList.toggle('food');
+  // }  
 
-}
+};
+
+
 
 function cellDeath(){
 
@@ -280,13 +309,17 @@ var exitButton = document.querySelectorAll('.continuenav a')[1];
 var mgsThemeMusic = document.querySelector('audio');
 var gameoverSound = new Audio('audio/gameover.m4a');
 
+  
 
-  if (snake[0].x <= -1 || snake[0].x >= 42) {
+  if (snake[0].x == -1 || snake[0].x == 42) {
     gameover();
+    clear();
   }
-  if (snake[0].y === -1 || snake[0].y >= 24) {
+  if (snake[0].y == -1 || snake[0].y == 24) {
     gameover();
+    clear();
   }
+  else {noSelfTouch()}
 
   function gameover(){
     gameOverBkrgd.style = 'z-index: 98; animation: fadein .5s 0s ease-in;animation-iteration-count: 1;'
@@ -303,9 +336,27 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     continueButton.addEventListener('click', gameReset)
   }
 
+  function noSelfTouch(){
+
+
+  for (var i = 1; i < snake.length; i++) {
+
+    var headX = snake[0].x
+    var headY = snake[0].y
+    var bodyX = snake[i].x
+    var bodyY = snake[i].y
+
+    if (headX === bodyX && headY === bodyY){
+
+    clear();
+    gameover();
+
+    }}}  
+
   function gameReset(){
     var gunshot = new Audio('audio/continuegunshot.m4a')
     gunshot.play();
+    gameoverSound.pause()
     mgsThemeMusic.src = "audio/ps4homemusic.mp3";
     document.addEventListener('keydown', keyListner);
     gameOverBkrgd.style = 'animation: fadedelay 2s 0s ease-out; animation-iteration-count: 1;'
@@ -317,8 +368,13 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     exitButton.removeEventListener('mouseover', chime);
     continueButton.removeEventListener('mouseover', chime);
     continueButton.removeEventListener('click', gameReset);
+    clear();
     snake = [{x:21,y:12}];
     updateBoard();
+    document.querySelector('.food').classList.toggle('food');
+    snakeFood();
+    setInt = 100
+    currentFunction = ['']
   }
 }
 
