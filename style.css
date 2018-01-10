@@ -206,14 +206,12 @@
 }
 .startDiv div {
   position: absolute;
-  bottom: 0;
+  top: 335px;
   height: 200px;
   width: 100%;
-  /*background-color: rgba(60, 60, 60, .3);*/
   z-index: 100;
 }
 #startButton {
-  top: 30%;
   font-family: mobileFont;
   color: rgba(202,32,22,1);
   font-size: 17pt;

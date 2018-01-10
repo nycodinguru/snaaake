@@ -2,11 +2,12 @@ function init() {
   board.render();
   updateBoard();
   snakeFood();
-  createBoard();
 }
 
 let snake = [{x:21,y:12}];
 var setInt = 130;
+
+//42 rows are being made and the column numbers are being assigned
 
 function renderRow() {
   var rowEl = document.createElement('div');
@@ -22,6 +23,9 @@ function renderRow() {
 
   return rowEl;
 }
+
+//24 rows are produced here and appended and the row numbers are being stored in data attributes of the cells and the rows 
+
 function renderGrid() {
   var newEl = document.createElement('div');
   newEl.classList.add('grid');
@@ -63,7 +67,9 @@ function updateBoard(){
     
     }
 
-    //Each 
+    //Each x & y value of every index of the snake array gets cycled through 
+    //and compared to the x and y of the current cell being
+    //processed by the forEach
 
     snake.forEach((body) => {
 
@@ -86,9 +92,10 @@ function updateBoard(){
   })
   }
 
-function foodFound (){
-  var cells = document.querySelectorAll('.cell');
 
+function foodFound(){
+  var cells = document.querySelectorAll('.cell');
+  
     snake.forEach((body) => {
       var apple = document.querySelector('.food');
       let foodEaten = false
@@ -111,11 +118,9 @@ function foodFound (){
       setInt+= -2
       apple.classList.toggle('food');
       snakeFood();
-
       snake.push(newBodyDiv);
 
     }
-
     })
     }
 
@@ -214,47 +219,37 @@ function move(e) {
   
 }
 
-function left(){
-   var newHead = {x:snake[0].x-1,y:snake[0].y}
-
-    snake.unshift(newHead);
+function toDoWhileMoving(){
     snake.pop();
     updateBoard();
     foodFound();
     cellDeath();
-  }
+}
+
+function left(){
+   var newHead = {x:snake[0].x-1,y:snake[0].y}
+   snake.unshift(newHead);
+   toDoWhileMoving()
+    }
 
 function up(){
 var newHead = {x:snake[0].x,y:snake[0].y-1}
-
     snake.unshift(newHead);
-    snake.pop();
-    updateBoard();
-    foodFound();
-    cellDeath();
-}
-
+    toDoWhileMoving()
+  }
 function right(){
 var newHead = {x:snake[0].x+1,y:snake[0].y}
-
     snake.unshift(newHead);
-    snake.pop();
-    updateBoard();
-    foodFound();
-    cellDeath();
-}
-
+    toDoWhileMoving()
+  }
 function down(){
    var newHead = {x:snake[0].x,y:snake[0].y+1}
-
     snake.unshift(newHead);
-    snake.pop();
-    updateBoard();
-    foodFound();
-    cellDeath();
+    toDoWhileMoving()
 }
 
 var cells;
+
 
 function snakeFood(){
    cells = document.querySelectorAll('.cell');
@@ -340,7 +335,7 @@ var gameoverSound = new Audio('audio/gameover.m4a');
   function noSelfTouch(){
 
 
-  for (var i = 2; i < snake.length; i++) {
+  for (var i = 3; i < snake.length; i++) {
 
     var headX = snake[0].x
     var headY = snake[0].y
@@ -431,25 +426,6 @@ var board = {
   cellData: []
 
 };
-
-function createBoard() {
-  // for (var i = 0; i < 24; i++) {
-    
-  //   for (var j = 0; j < 42; j++) {
-      
-  //     let row = [];
-
-  //       row.push(0)
-        
-      
-  //     }
-
-  //     return row
-  //   }
-
-  //   board.cellData.push(row);
-  }
-  // console.log(board.cellData);
 
 init();
 
