@@ -1,28 +1,47 @@
-snake
-Project Proposal
 
-Snake
+#Instuctions
 
-Type: Obstacle Game
+Use the Up, Down, Left, & Right keyboard keys to manipulate the snake. Eat the apples and avoid touching the snake's body and the game borders.
 
-Tech: Javascript, jQuery, CSS, HTML.
 
-Rules: The snake can't touch it's own body or any of the four walls or else the player will lose.
+#What is the game about?
 
-Basic Requirements: -game board object; game data object -event listener to manipulate snake across the gameboard -method of moving snake throughout board, adding and subtracting length to simulate movement -intro page -game over screen overlay
+Snake is about growing a snake by eating randomly generating food on the gameboard while avoiding touching the sides of the board and the snake's own body. The more food items that are eaten the longer the snake grows and the faster is slides across the board.
 
-Later Goals: -score keeping -method of adding length to the snake via food -multple levels
 
-Timeline:
+#What features does it include?
 
-01/03 - Understanding what I need to build the game and how to do it
+1. A sliding snake
+2. Randomly generating food
+3. Death conditions tied to a gameover screen
+4. Increasing game speed
+5. Numerous Animation and sounds
+6. Theme music
 
-01/04 - Game should be partially functional with a moving snake
 
-01/05 - Feedback from GA classmates and instructors
 
-01/06 - 01/07: Adding a growth method + generating food for snake
+#Were there any particular pain points or unsolved problems you had to manage? (e.g. technological, timing, content, etc.)
 
-01/08 - Iron out bugs/details, possibly adding additional features to the game.
+Building a game engine!
 
-01/09 - present finished project.
+After tweaking Drake's 2D game board function from tic-tac-toe for my game I was pretty much lost. So I just started styling the game, adding sounds, and animations. The same day I mapped keyboard values to empty functions I knew I would need down the line. The functions toggled the snake class on divs one by one starting from the center which is not what I wanted.
+
+On Thursday I totally restyled the game.
+
+Friday I spent most of the day rebuilding me gameboard, after receving conflicting advice from Gainor and Drake. Gainor essentially recommended a 1 dimentional gameboard with divs numbered between 1 - 1000. A few hours later Drake recommended using a 2D gameboard with a 2D array value and an object. So by the end of the day I still was where I started at the beginning of the day.
+
+It wasn't until Saturday that I started to understand 2D arrays. After getting help from the SRC I got the logic I needed to make moving the snake possible which would I allow  me to add aditional features to the game.
+
+
+#Is there any other information you think might help us understand what you've built?
+
+The UI and the gamedata should ideally be separate when making a game. An update fuction should be used to update the UI based on that data.
+
+
+
+List the technologies used
+
+JavaScript
+HTML
+CSS
+

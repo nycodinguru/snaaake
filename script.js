@@ -166,14 +166,15 @@ function clear() {
   clearInterval(rightA);
 }
 
-var currentFunction = ['']
+var currentFunction = [""] //tracks the current direction of the snake object
+var gameState = "in-play"; //tracks the current state of the game, which is either paused or in play
 
 function move(e) {
   var errorSound = new Audio('audio/doorbuzz.wav');
 
 
   if (e.keyCode === 65 || e.keyCode === 37){
-      if (currentFunction[0] !== 'right' && currentFunction[0] !== 'left'){
+      if (currentFunction[0] !== 'right' && currentFunction[0] !== 'left' && gameState === "in-play"){
 
     clearInterval(upA);
     clearInterval(downA);
@@ -183,7 +184,7 @@ function move(e) {
     currentFunction.pop();
     }}
   if (e.keyCode === 87 || e.keyCode === 38){
-      if (currentFunction[0] !== 'down' && currentFunction[0] !== 'up'){  
+      if (currentFunction[0] !== 'down' && currentFunction[0] !== 'up' && gameState === "in-play"){  
     clearInterval(leftA);
     clearInterval(rightA);
     
@@ -192,7 +193,7 @@ function move(e) {
     currentFunction.pop();
   }}
   if (e.keyCode === 68 || e.keyCode === 39){
-      if (currentFunction[0] !== 'left' && currentFunction[0] !== 'right'){  
+      if (currentFunction[0] !== 'left' && currentFunction[0] !== 'right' && gameState === "in-play"){  
     clearInterval(upA);
     clearInterval(downA);
     
@@ -201,7 +202,7 @@ function move(e) {
     currentFunction.pop();
   }}
   if (e.keyCode === 83 || e.keyCode === 40){
-      if (currentFunction[0] !== 'up' && currentFunction[0] !== 'down'){
+      if (currentFunction[0] !== 'up' && currentFunction[0] !== 'down' && gameState === "in-play"){
 
     clearInterval(leftA);
     clearInterval(rightA);
@@ -328,6 +329,7 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     continueNav.style = 'z-index: 200; animation: gameover 15s ease-out;animation-iteration-count: 1; opacity: 1;'
     gameoverSound.play();
     exitButton.addEventListener('mouseover', chime);
+    exitButton.addEventListener('click', () => {window.location.href = "http://rashadrose.io"})
     continueButton.addEventListener('mouseover', chime);
     continueButton.addEventListener('click', gameReset)
   }
@@ -379,43 +381,57 @@ var gameoverSound = new Audio('audio/gameover.m4a');
 
 function pauseGame(){
 
-  // var currentFunc = currentFunction[0];
-  // console.log(currentFunction.length);
+  var currentFunc = currentFunction[0];
+  var pausedScreen = document.querySelector('#paused');
+  const food = document.querySelector('.food');
+  //console.log(currentFunction.length, currentFunction[0]);
 
-  // if (currentFunction.length == 1){
-  //   clear();
-  //   currentFunction.push('new');
-  //   ;
-  // }
+  if (currentFunction.length === 1){
+    gameState = "paused"
+    pausedScreen.style = "z-index: 1000; transition: .4s; opacity: 1;"
+    food.style = "animation: none; transform: scale(1.6, 1.6);"
+    clear();
+    if (currentFunc === 'left' ){
+           currentFunction.unshift('left');
+    }
+    if (currentFunc === 'up' ){
+           currentFunction.unshift('up');
+    }
+    if (currentFunc === 'right'){
+           currentFunction.unshift('right');
+    }     
+    if (currentFunc === 'down' ){
+           currentFunction.unshift('down');
+          
+    }
+  }
 
-  // if (currentFunction.length == 2){
-  //   clear();
-  //   if (currentFunc == 'left' ){
-  //         leftA = setInterval(left, setInt);
-  //         currentFunction.unshift('left');
-  //         currentFunction.pop();
-  //         currentFunction.pop();
-  //   }
-  //   if (currentFunc == 'up' ){
-  //         upA = setInterval(up, setInt);
-  //         currentFunction.unshift('up');
-  //         currentFunction.pop();
-  //         currentFunction.pop();
-  //   }
-  //   if (currentFunc == 'right'){
-  //         rightA = setInterval(right, setInt);
-  //         currentFunction.unshift('right');
-  //         currentFunction.pop();
-  //         currentFunction.pop();
-  //   }     
-  //   if (currentFunc == 'down' ){
-  //         downA = setInterval(down, setInt);
-  //         currentFunction.unshift('down');
-  //         currentFunction.pop();
-  //         currentFunction.pop();
-  //   }
-  // }
-  
+  else {
+    gameState = "in-play"
+    pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;"
+    food.style = "animation: foodpulse 1s 0s infinite linear;"
+    if (currentFunc === 'left' ){
+           currentFunction.pop();
+           leftA = setInterval(left, setInt);
+           console.log(currentFunction.length, currentFunction[0]);
+    }
+    if (currentFunc === 'up' ){
+           currentFunction.pop();
+           upA = setInterval(up, setInt);
+           console.log(currentFunction.length, currentFunction[0]);
+    }
+    if (currentFunc === 'right'){
+           currentFunction.pop();
+           rightA = setInterval(right, setInt);
+           console.log(currentFunction.length, currentFunction[0]);
+    }     
+    if (currentFunc === 'down' ){
+           currentFunction.pop();
+           downA = setInterval(down, setInt);
+           console.log(currentFunction.length, currentFunction[0]);
+          
+    }
+  }
 }
 
 

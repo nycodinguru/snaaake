@@ -1,39 +1,39 @@
 @keyframes start {
   0% {
-    color: rgba( 250, 17, 28, 0);;
+    color: rgba(250, 17, 28, 0);
   }
 
   50% {
-   color: rgba( 250, 17, 28, 1);
+    color: rgba(250, 17, 28, 1);
   }
 
   100% {
-    color: rgba( 250, 17, 28, 0);
+    color: rgba(250, 17, 28, 0);
   }
 }
 @keyframes snakeBlink {
   1% {
-   background: rgba(175, 245, 224, 1);
-   box-shadow: 1.5px 1.5px rgba(120, 176, 153, 1);
+    background: rgba(175, 245, 224, 1);
+    box-shadow: 1.5px 1.5px rgba(120, 176, 153, 1);
   }
   20% {
     background: rgba(48, 69, 59, 1);
     box-shadow: 1.5px 1.5px rgba(120, 176, 153, 0);
   }
-  100%{
+  100% {
     background: rgba(48, 69, 59, 1);
     box-shadow: 1.5px 1.5px rgba(120, 176, 153, 0);
   }
 }
 @keyframes foodpulse {
   1% {
-   transform: scale(1.6,1.6);
+    transform: scale(1.6, 1.6);
   }
   50% {
-   transform: scale(2.1,2.1);
+    transform: scale(2.1, 2.1);
   }
-  100%{
-    transform: scale(1.6,1.6);
+  100% {
+    transform: scale(1.6, 1.6);
   }
 }
 @keyframes startHover {
@@ -42,7 +42,7 @@
   }
 
   50% {
-   color: rgba(24, 35, 15, 1);
+    color: rgba(24, 35, 15, 1);
   }
 
   100% {
@@ -51,15 +51,15 @@
 }
 @keyframes gameoverhover {
   0% {
-    color: rgba(123, 219, 211, .2);
+    color: rgba(123, 219, 211, 0.2);
   }
 
   50% {
-   color: rgba(123, 219, 211, 1);
+    color: rgba(123, 219, 211, 1);
   }
 
   100% {
-    color: rgba(123, 219, 211, .2);
+    color: rgba(123, 219, 211, 0.2);
   }
 }
 @keyframes fade {
@@ -69,7 +69,7 @@
   }
 
   50% {
-    opacity: .5;
+    opacity: 0.5;
     z-index: 150;
   }
   99% {
@@ -92,10 +92,10 @@
     z-index: 150;
   }
   75% {
-    opacity: .5;
+    opacity: 0.5;
     z-index: 150;
   }
-   99% {
+  99% {
     opacity: 0;
     z-index: 150;
   }
@@ -113,85 +113,83 @@
     opacity: 1;
   }
 }
-@keyframes snake{
-0% {
+@keyframes snake {
+  0% {
     font-size: 30em;
     position: absolute;
     text-shadow: 15px 15px rgba(0, 0, 0, 0.2);
-}
-20% {
+  }
+  20% {
     font-size: 30em;
     position: absolute;
     text-shadow: 15px 15px rgba(0, 0, 0, 0.2);
-}
-50% {
+  }
+  50% {
     font-size: 30em;
     transform: translateX(-3900px);
     position: absolute;
     opacity: 1;
     text-shadow: 15px 15px rgba(0, 0, 0, 0.2);
-}
-70%{
-
-  position: absolute;
-  top: 10%;
-  opacity: 0;
-}
-80%{
-  position: absolute;
-  font-size: 60pt;
-  opacity: 1;
-  text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
-}
-90%{
-  position: absolute;
-  opacity: 1;
-}
-100%{
-  position: absolute;
-  right: 30%;
-  opacity: 1;
-}
+  }
+  70% {
+    position: absolute;
+    top: 10%;
+    opacity: 0;
+  }
+  80% {
+    position: absolute;
+    font-size: 60pt;
+    opacity: 1;
+    text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
+  }
+  90% {
+    position: absolute;
+    opacity: 1;
+  }
+  100% {
+    position: absolute;
+    right: 30%;
+    opacity: 1;
+  }
 }
 @keyframes thegame {
-0% {
+  0% {
     opacity: 0;
   }
-95% {
+  95% {
     opacity: 0;
   }
-100% {
+  100% {
     opacity: 1;
   }
 }
 @keyframes gameover {
-0% {  
+  0% {
     opacity: 0;
-}
-50%{
+  }
+  50% {
     opacity: 1;
-}
-100% {
+  }
+  100% {
     opacity: 1;
+  }
 }
-}
-
 
 @font-face {
   font-family: mobileFont;
-  src: url('fonts/MobileFont.ttf');
+  src: url("fonts/MobileFont.ttf");
 }
 @font-face {
   font-family: ShinobiChildSolid;
-  src: url('fonts/Shinobi Child Solid.ttf');
+  src: url("fonts/Shinobi Child Solid.ttf");
 }
 @font-face {
   font-family: TacticalEspionageAction;
-  src: url('fonts/Tactical Espionage Action.ttf');
+  src: url("fonts/Tactical Espionage Action.ttf");
 }
 @font-face {
   font-family: MetalGear;
-  src: url('fonts/METAG.TTF');
+  src: url("fonts/METAG.TTF");
 }
 .startDiv {
   position: fixed;
@@ -206,28 +204,28 @@
 }
 .startDiv div {
   position: absolute;
-  top: 335px;
+  top: 42vh;
   height: 200px;
   width: 100%;
   z-index: 100;
 }
 #startButton {
   font-family: mobileFont;
-  color: rgba(202,32,22,1);
+  color: rgba(202, 32, 22, 1);
   font-size: 17pt;
   word-spacing: 15px;
   animation: start 2s 0.5s infinite ease-in-out;
   height: 50px;
   padding-top: 30px;
   cursor: pointer;
-  transition: .35s;
-  background-color: rgba(60, 60, 60, .3);
+  transition: 0.35s;
+  background-color: rgba(60, 60, 60, 0.3);
   width: 50%;
   left: 25%;
-  transform: scaleY(.75);
-  }
-#startButton:hover{
-  transition: .5s;
+  transform: scaleY(0.75);
+}
+#startButton:hover {
+  transition: 0.5s;
   background-color: rgb(91, 146, 115);
   text-shadow: 3px 3px rgba(0, 0, 0, 0.2);
   border: 3px solid rgba(0, 0, 0, 0.2);
@@ -240,7 +238,7 @@
   font-size: 40pt;
   border-top: none;
   border-bottom: none;
-  background-color: rgba(16, 29, 22, .8);
+  background-color: rgba(16, 29, 22, 0.8);
   padding: 20px 80px 20px 80px;
   margin-bottom: 33px;
 }
@@ -252,11 +250,11 @@ h2 {
   text-shadow: 3px 3px rgba(120, 176, 153, 1);
   line-height: 300px;
   animation: snake 4s 0s ease-in-out;
-  animation-iteration-count: 1; 
+  animation-iteration-count: 1;
   margin-bottom: 0;
   height: 195px;
 }
-#tact{
+#tact {
   position: absolute;
   top: 180px;
   font-family: TacticalEspionageAction;
@@ -265,9 +263,8 @@ h2 {
   font-size: 17pt;
   animation: thegame 4.5s 0s infinite ease-out;
   animation-iteration-count: 1;
-
 }
-#solid{
+#solid {
   position: relative;
   top: 0;
   font-family: TacticalEspionageAction;
@@ -285,19 +282,9 @@ h2 {
   margin-right: auto;
   left: 1%;
 }
-/*#i{
-  position: fixed;
-  height: 4px;
-  width: 29px;
-  background: rgba(8, 8, 8, .4);
-  top: 254px;
-  left: 76.8%;
-  z-index: 1000;
-  transform: skewX(-11deg);
-}*/
 h3 {
   font-family: mobileFont;
-  color: rgba(255, 255, 255, .35);
+  color: rgba(255, 255, 255, 0.35);
   font-size: 10pt;
   text-shadow: 2px 2px rgba(0, 0, 0, 0.2);
   line-height: 520px;
@@ -309,7 +296,7 @@ h4 {
   color: rgba(175, 245, 224, 1);
   font-size: 25pt;
   text-shadow: 2px 2px rgba(120, 176, 153, 1);
-  background-color: rgba(16, 29, 22, .8);
+  background-color: rgba(16, 29, 22, 0.8);
   position: relative;
   width: 250px;
   padding: 9px 0;
@@ -317,6 +304,7 @@ h4 {
 }
 body {
   max-width: 1200px;
+  height: 80vh;
   margin: auto;
   justify-content: center;
   display: flex;
@@ -351,15 +339,15 @@ main {
   box-shadow: 1.5px 1.5px rgba(120, 176, 153, 1);
   z-index: 2;
 }
-.blink{
-  animation: snakeBlink .8s 0s infinite linear;
+.blink {
+  animation: snakeBlink 0.8s 0s infinite linear;
 }
 .food {
   background: rgba(48, 69, 59, 0);
   border: none;
   height: 10px;
   width: 10px;
-  background-image: url('images/knowledge.png');
+  background-image: url("images/knowledge.png");
   background-size: cover;
   background-position: center;
   padding: 3px;
@@ -373,7 +361,7 @@ main {
   width: 700px;
   padding: 1px;
   z-index: 1;
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 .row {
@@ -381,7 +369,6 @@ main {
   justify-content: center;
 }
 .gameover {
-  
   height: 100%;
   width: 100%;
   position: fixed;
@@ -391,10 +378,9 @@ main {
   bottom: 0;
   left: 0;
   z-index: -99;
-  
 }
 
-#continue{
+#continue {
   display: none;
   top: 50%;
   right: 0;
@@ -407,12 +393,12 @@ main {
   color: white;
   z-index: 10001;
   background-position: center;
-  background-size: cover; 
+  background-size: cover;
   align-items: center;
   text-align: center;
   transform: translateY(-50%);
 }
-.continuenav{
+.continuenav {
   opacity: 0;
   max-height: 100vh;
   width: 100%;
@@ -426,40 +412,76 @@ main {
   z-index: -99;
   display: inline-block;
 }
-.continuenav ul li{
+.continuenav ul li {
   display: inline-block;
   transform: scale(1, 1.7);
-  letter-spacing: .5vw;
+  letter-spacing: 0.5vw;
   line-height: 60%;
 }
-.continuenav li:nth-child(2){
+.continuenav li:nth-child(2) {
   letter-spacing: 3vw;
 }
-.continuenav a{
+.continuenav a {
   font-family: TacticalEspionageAction;
   text-decoration: none;
   font-size: 1.8vw;
-  color: rgb(70,152,117);
+  color: rgb(70, 152, 117);
   transition: 1.5s;
   line-height: 4.507em;
 }
-.continuenav a:hover{
-  animation: gameoverhover 1.5s infinite linear; 
+.continuenav a:hover {
+  animation: gameoverhover 1.5s infinite linear;
   cursor: pointer;
 }
-.gameoverback{
+.gameoverback {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgb( 8, 8, 8);
+  background-color: rgb(8, 8, 8);
   height: 100vh;
   width: 100vw;
   z-index: -99;
 }
 
-ul{
+ul {
   margin: 0;
   padding: 0;
+}
+
+#paused {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 0;
+  height: 404px;
+  width: 710px;
+  top: 23.6vh;
+  line-height: 21;
+  font-size: 15pt;
+  left: 95px;
+  color: rgba(175, 245, 224, 1);
+  transition: 0.4s;
+  opacity: 0;
+}
+
+#keys {
+  position: relative;
+  float: right;
+  top: -126px;
+  padding: 10px;
+  font-family: mobileFont;
+  color: rgba(48, 69, 59, 1);
+  line-height: 21px;
+  list-style: none;
+  right: 31px;
+  text-align: center;
+  background-color: rgba(16, 29, 22, 0.8);
+  width: 120px;
+  height: 120px;
+  text-shadow: 2px 2px rgba(18, 39, 29, 1);
+}
+
+#keys span {
+  font-weight: bold;
 }
