@@ -394,7 +394,7 @@ function pauseGame(){
     codecOpen.play();
     food.classList.add('food-paused');
     food.classList.toggle('food');
-    console.log(currentFunction.length, currentFunction)
+    //console.log(currentFunction.length, currentFunction)
   }
   else if (gameState === "paused" && currentFunction[0] === "new"){
     gameState = "in-play";
@@ -402,10 +402,10 @@ function pauseGame(){
     exitSound.play();
     foodPaused.classList.add('food');
     foodPaused.classList.toggle('food-paused');
-    console.log(currentFunction.length, currentFunction)
+    //console.log(currentFunction.length, currentFunction)
   }
   else if (currentFunction.length === 1 && currentFunction[0] !== "new"){
-    console.log(currentFunction.length, currentFunction)
+    //console.log(currentFunction.length, currentFunction)
     gameState = "paused"
     pausedScreen.style = "z-index: 1000; transition: .4s; opacity: 1;"
     codecOpen.play();
@@ -433,7 +433,7 @@ function pauseGame(){
     exitSound.play();
     foodPaused.classList.add('food');
     foodPaused.classList.toggle('food-paused');
-    // food.style = "animation: foodpulse 1s 0s infinite linear;"
+    
     if (currentFunc === 'left' ){
            currentFunction.pop();
            leftA = setInterval(left, setInt);
