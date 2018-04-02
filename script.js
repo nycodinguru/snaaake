@@ -381,6 +381,8 @@ var gameoverSound = new Audio('audio/gameover.m4a');
 
 function pauseGame(){
 
+  var codecOpen = new Audio("audio/codecopen.wav");
+  var exitSound = new Audio("audio/exit.wav");
   var currentFunc = currentFunction[0];
   var pausedScreen = document.querySelector('#paused');
   const food = document.querySelector('.food');
@@ -389,6 +391,7 @@ function pauseGame(){
   if (gameState === "in-play" && currentFunction[0] === "new"){
     gameState = "paused";
     pausedScreen.style = "z-index: 1000; transition: 0s; opacity: 1;"
+    codecOpen.play();
     food.classList.add('food-paused');
     food.classList.toggle('food');
     console.log(currentFunction.length, currentFunction)
@@ -396,6 +399,7 @@ function pauseGame(){
   else if (gameState === "paused" && currentFunction[0] === "new"){
     gameState = "in-play";
     pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;";
+    exitSound.play();
     foodPaused.classList.add('food');
     foodPaused.classList.toggle('food-paused');
     console.log(currentFunction.length, currentFunction)
@@ -404,6 +408,7 @@ function pauseGame(){
     console.log(currentFunction.length, currentFunction)
     gameState = "paused"
     pausedScreen.style = "z-index: 1000; transition: .4s; opacity: 1;"
+    codecOpen.play();
     food.classList.add('food-paused');
     food.classList.toggle('food');
     clear();
@@ -425,6 +430,7 @@ function pauseGame(){
   else if (currentFunction.length > 1 && gameState === "paused"){
     gameState = "in-play"
     pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;";
+    exitSound.play();
     foodPaused.classList.add('food');
     foodPaused.classList.toggle('food-paused');
     // food.style = "animation: foodpulse 1s 0s infinite linear;"
