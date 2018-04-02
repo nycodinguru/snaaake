@@ -166,7 +166,7 @@ function clear() {
   clearInterval(rightA);
 }
 
-var currentFunction = [""] //tracks the current direction of the snake object
+var currentFunction = ["new"]; //tracks the current direction of the snake object
 var gameState = "in-play"; //tracks the current state of the game, which is either paused or in play
 
 function move(e) {
@@ -384,12 +384,28 @@ function pauseGame(){
   var currentFunc = currentFunction[0];
   var pausedScreen = document.querySelector('#paused');
   const food = document.querySelector('.food');
+  const foodPaused = document.querySelector('.food-paused');
   //console.log(currentFunction.length, currentFunction[0]);
-
-  if (currentFunction.length === 1){
+  if (gameState === "in-play" && currentFunction[0] === "new"){
+    gameState = "paused";
+    pausedScreen.style = "z-index: 1000; transition: 0s; opacity: 1;"
+    food.classList.add('food-paused');
+    food.classList.toggle('food');
+    console.log(currentFunction.length, currentFunction)
+  }
+  else if (gameState === "paused" && currentFunction[0] === "new"){
+    gameState = "in-play";
+    pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;";
+    foodPaused.classList.add('food');
+    foodPaused.classList.toggle('food-paused');
+    console.log(currentFunction.length, currentFunction)
+  }
+  else if (currentFunction.length === 1 && currentFunction[0] !== "new"){
+    console.log(currentFunction.length, currentFunction)
     gameState = "paused"
     pausedScreen.style = "z-index: 1000; transition: .4s; opacity: 1;"
-    food.style = "animation: none; transform: scale(1.6, 1.6);"
+    food.classList.add('food-paused');
+    food.classList.toggle('food');
     clear();
     if (currentFunc === 'left' ){
            currentFunction.unshift('left');
@@ -406,10 +422,12 @@ function pauseGame(){
     }
   }
 
-  else {
+  else if (currentFunction.length > 1 && gameState === "paused"){
     gameState = "in-play"
-    pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;"
-    food.style = "animation: foodpulse 1s 0s infinite linear;"
+    pausedScreen.style = "transition: .4s; opacity: 0; z-index: -100;";
+    foodPaused.classList.add('food');
+    foodPaused.classList.toggle('food-paused');
+    // food.style = "animation: foodpulse 1s 0s infinite linear;"
     if (currentFunc === 'left' ){
            currentFunction.pop();
            leftA = setInterval(left, setInt);

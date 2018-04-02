@@ -352,7 +352,22 @@ main {
   background-position: center;
   padding: 3px;
   z-index: 2;
+  transform: scale(1.6,1.6);
   animation: foodpulse 1s 0s infinite linear;
+}
+
+.food-paused{
+  background: rgba(48, 69, 59, 0);
+  border: none;
+  height: 10px;
+  width: 10px;
+  background-image: url("images/knowledge.png");
+  background-size: cover;
+  background-position: center;
+  padding: 3px;
+  z-index: 2;
+  transform: scale(1.6,1.6);
+  animation: none;
 }
 .grid {
   display: flex;
@@ -456,12 +471,13 @@ ul {
   z-index: 0;
   height: 404px;
   width: 710px;
-  top: 23.6vh;
+  margin-top: -5px;
   line-height: 21;
   font-size: 15pt;
   color: rgba(175, 245, 224, 1);
   transition: 0.4s;
   opacity: 0;
+  margin-left: -5px;
 }
 
 #keys {
