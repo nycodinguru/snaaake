@@ -372,7 +372,7 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     document.querySelector('.food').classList.toggle('food');
     snakeFood();
     setInt = 130;
-    currentFunction = [''];
+    currentFunction = ["new"];
     document.querySelectorAll('.cell')[525].classList.toggle('blink');
   }
 }
