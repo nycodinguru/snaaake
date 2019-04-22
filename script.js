@@ -329,14 +329,12 @@ var gameoverSound = new Audio('audio/gameover.m4a');
     continueNav.style = 'z-index: 200; animation: gameover 15s ease-out;animation-iteration-count: 1; opacity: 1;'
     gameoverSound.play();
     exitButton.addEventListener('mouseover', chime);
-    exitButton.addEventListener('click', () => {window.location.href = "http://rashadrose.io"})
+    exitButton.addEventListener('click', () => {window.location.href = "https://rashad.dev/"})
     continueButton.addEventListener('mouseover', chime);
     continueButton.addEventListener('click', gameReset)
   }
 
   function noSelfTouch(){
-
-
   for (var i = 3; i < snake.length; i++) {
 
     var headX = snake[0].x
